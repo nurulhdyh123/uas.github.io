@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glow Liquid Foundation | GlowUp</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .product-detail-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+            margin-top: 3rem;
+        }
+
+        .product-gallery {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .main-image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .thumbnails {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .thumb {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .thumb:hover,
+        .thumb.active {
+            border-color: var(--color-primary);
+        }
+
+        .product-details h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .price-tag {
+            font-size: 1.8rem;
+            color: var(--color-dusty);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .rating {
+            color: var(--color-accent);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .description {
+            color: var(--color-text-light);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .options-group {
+            margin-bottom: 2rem;
+        }
+
+        .options-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .variant-btn {
+            padding: 8px 16px;
+            border: 1px solid #ddd;
+            background: white;
+            margin-right: 0.5rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .variant-btn.active,
+        .variant-btn:hover {
+            background: var(--color-primary);
+            color: white;
+            border-color: var(--color-primary);
+        }
+
+        .qty-wrapper {
+            display: inline-flex;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            padding: 5px;
+            align-items: center;
+            margin-right: 1rem;
+        }
+
+        .qty-btn {
+            background: none;
+            border: none;
+            width: 30px;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .qty-input {
+            width: 40px;
+            border: none;
+            text-align: center;
+            font-family: var(--font-body);
+        }
+
+        .action-buttons {
+            display: flex;
+            margin-top: 2rem;
+            gap: 1rem;
+        }
+
+        .btn-wishlist {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #eee;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: var(--color-primary);
+            transition: all 0.3s;
+        }
+
+        .btn-wishlist:hover {
+            background: #eee;
+        }
+
+        @media (max-width: 768px) {
+            .product-detail-container {
+                grid-template-columns: 1fr;
+            }
+
+            .main-image {
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="container navbar">
+            <a href="index.html" class="logo">Glow<span>Up</span>.</a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Beranda</a></li>
+                    <li><a href="shop.html" class="active">Belanja</a></li>
+                    <li><a href="about.html">Tentang Kami</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                </ul>
+            </nav>
+            <div class="nav-icons">
+                <i class="fas fa-search"></i>
+                <i class="far fa-heart"></i>
+                <div class="cart-icon-wrapper" style="position: relative;">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span id="cart-count"
+                        style="background: var(--color-primary); color: white; border-radius: 50%; padding: 2px 6px; font-size: 12px; position:absolute; top: -8px; right: -8px;">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="product-detail-container">
+            <!-- Left: Gallery -->
+            <div class="product-gallery">
+                <img src="https://images.unsplash.com/photo-1631729371254-42c2a890967f?q=80&w=800&auto=format&fit=crop"
+                    alt="Main Product" class="main-image" id="mainImg">
+                <div class="thumbnails">
+                    <img src="https://images.unsplash.com/photo-1631729371254-42c2a890967f?q=80&w=200&auto=format&fit=crop"
+                        class="thumb active" onclick="changeImage(this)">
+                    <img src="https://images.unsplash.com/photo-1627384113743-6e02db8795cb?q=80&w=200&auto=format&fit=crop"
+                        class="thumb" onclick="changeImage(this)">
+                    <img src="https://images.unsplash.com/photo-1596462502278-27bfdd403348?q=80&w=200&auto=format&fit=crop"
+                        class="thumb" onclick="changeImage(this)">
+                </div>
+            </div>
+
+            <!-- Right: Info -->
+            <div class="product-details">
+                <div class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <span style="color: #999; margin-left: 5px;">(128 Reviews)</span>
+                </div>
+                <h1>Glow Liquid Foundation</h1>
+                <div class="price-tag">Rp 129.000</div>
+                <p class="description">
+                    Foundation cair dengan hasil akhir dewy yang memberikan efek kulit sehat bercahaya.
+                    Formula ringan, tahan lama hingga 12 jam, dan dilengkapi dengan SPF 30 untuk perlindungan dari sinar
+                    matahari.
+                    Cocok untuk semua jenis kulit, termasuk kulit sensitif.
+                </p>
+
+                <div class="options-group">
+                    <label>Shade:</label>
+                    <button class="variant-btn active">Ivory</button>
+                    <button class="variant-btn">Beige</button>
+                    <button class="variant-btn">Sand</button>
+                </div>
+
+                <div class="action-buttons">
+                    <div class="qty-wrapper">
+                        <button class="qty-btn" onclick="adjustQty(-1)">-</button>
+                        <input type="text" value="1" class="qty-input" id="qtyInput" readonly>
+                        <button class="qty-btn" onclick="adjustQty(1)">+</button>
+                    </div>
+                    <button class="btn btn-primary" onclick="addToCart()" style="flex: 1;">Tambah ke Keranjang</button>
+                    <div class="btn-wishlist">
+                        <i class="far fa-heart"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Related Products -->
+        <div style="margin-top: 5rem; margin-bottom: 3rem;">
+            <h3 class="section-title text-center" style="font-size: 2rem;">Kamu Mungkin Suka</h3>
+            <div class="products-grid" style="margin-top: 2rem;">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1627384113743-6e02db8795cb?q=80&w=800&auto=format&fit=crop"
+                            alt="Serum Pink">
+                        <div class="add-to-cart-btn" onclick="addToCart()">+ Keranjang</div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Lip Care</div>
+                        <h3 class="product-title">Rosy Lip Balm</h3>
+                        <div class="product-price">Rp 89.000</div>
+                    </div>
+                </div>
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1591360236480-4497a802d6b1?q=80&w=800&auto=format&fit=crop"
+                            alt="Eyeshadow Palette">
+                        <div class="add-to-cart-btn" onclick="addToCart()">+ Keranjang</div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Eye</div>
+                        <h3 class="product-title">Sunset Nude Palette</h3>
+                        <div class="product-price">Rp 159.000</div>
+                    </div>
+                </div>
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=800&auto=format&fit=crop"
+                            alt="Blush On">
+                        <div class="add-to-cart-btn" onclick="addToCart()">+ Keranjang</div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Face</div>
+                        <h3 class="product-title">Peach Perfect Blush</h3>
+                        <div class="product-price">Rp 75.000</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer reused -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <!-- ...same footer... -->
+                <div class="footer-col">
+                    <h4 class="logo">Glow<span>Up</span>.</h4>
+                    <p style="color: var(--color-text-light);">Menemani perempuan tampil percaya diri dengan makeup yang
+                        aman, terjangkau, dan estetik.</p>
+                </div>
+                <!-- Simplified footer for brevity in this file -->
+                <div class="footer-col">
+                    <h4>Bantuan</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Cara Pemesanan</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 GlowUp Cosmetics. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        function changeImage(element) {
+            document.getElementById('mainImg').src = element.src;
+            document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+            element.classList.add('active');
+        }
+
+        function adjustQty(amount) {
+            const input = document.getElementById('qtyInput');
+            let val = parseInt(input.value);
+            val += amount;
+            if (val < 1) val = 1;
+            input.value = val;
+        }
+    </script>
+</body>
+
+</html>

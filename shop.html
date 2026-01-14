@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belanja | GlowUp</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Specific Shop Styles */
+        .shop-container {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 3rem;
+            padding-top: 2rem;
+        }
+
+        .filter-sidebar {
+            background: white;
+            padding: 1.5rem;
+            border-radius: var(--radius-md);
+            border: 1px solid #f0f0f0;
+            height: fit-content;
+        }
+
+        .filter-group {
+            margin-bottom: 2rem;
+        }
+
+        .filter-title {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--color-dusty);
+            border-bottom: 1px solid #f0f0f0;
+            padding-bottom: 0.5rem;
+        }
+
+        .filter-list li {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: var(--color-text-light);
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .filter-list li:hover {
+            color: var(--color-primary);
+        }
+
+        .filter-price-range {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .color-options {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .color-circle {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid white;
+            box-shadow: 0 0 0 1px #eee;
+        }
+
+        .color-circle.active {
+            box-shadow: 0 0 0 2px var(--color-primary);
+        }
+
+        @media (max-width: 768px) {
+            .shop-container {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-sidebar {
+                display: none;
+                /* In a real app, make this collapsible */
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="container navbar">
+            <a href="index.html" class="logo">Glow<span>Up</span>.</a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Beranda</a></li>
+                    <li><a href="shop.html" class="active">Belanja</a></li>
+                    <li><a href="about.html">Tentang Kami</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                </ul>
+            </nav>
+            <div class="nav-icons">
+                <i class="fas fa-search"></i>
+                <i class="far fa-heart"></i>
+                <div class="cart-icon-wrapper" style="position: relative;">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span id="cart-count"
+                        style="background: var(--color-primary); color: white; border-radius: 50%; padding: 2px 6px; font-size: 12px; position:absolute; top: -8px; right: -8px;">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Shop Header -->
+        <div class="text-center" style="margin: 3rem 0;">
+            <h1 style="font-size: 3rem; color: var(--color-dusty);">Katalog Produk</h1>
+            <p style="color: var(--color-text-light);">Temukan semua kebutuhan make up mu disini</p>
+        </div>
+
+        <div class="shop-container">
+            <!-- Sidebar -->
+            <aside class="filter-sidebar">
+                <div class="filter-group">
+                    <h3 class="filter-title">Kategori</h3>
+                    <ul class="filter-list">
+                        <li><span>Face</span> <span>(12)</span></li>
+                        <li><span>Eyes</span> <span>(8)</span></li>
+                        <li><span>Lips</span> <span>(15)</span></li>
+                        <li><span>Tools</span> <span>(5)</span></li>
+                        <li><span>Bundles</span> <span>(3)</span></li>
+                    </ul>
+                </div>
+
+                <div class="filter-group">
+                    <h3 class="filter-title">Harga</h3>
+                    <ul class="filter-list">
+                        <li>
+                            < Rp 50.000</li>
+                        <li>Rp 50.000 - Rp 150.000</li>
+                        <li>Rp 150.000 - Rp 300.000</li>
+                        <li>> Rp 300.000</li>
+                    </ul>
+                </div>
+
+                <div class="filter-group">
+                    <h3 class="filter-title">Warna</h3>
+                    <div class="color-options">
+                        <div class="color-circle" style="background: #FFC0CB;"></div>
+                        <div class="color-circle" style="background: #DCAE96;"></div>
+                        <div class="color-circle" style="background: #e63946;"></div>
+                        <div class="color-circle" style="background: #a8dadc;"></div>
+                        <div class="color-circle" style="background: #f1faee;"></div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Product Grid -->
+            <main class="products-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <a href="product.html"><img
+                                src="https://images.unsplash.com/photo-1627384113743-6e02db8795cb?q=80&w=800&auto=format&fit=crop"
+                                alt="Serum Pink"></a>
+                        <div class="add-to-cart-btn" onclick="addToCart()">+ Keranjang</div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Lip Care</div>
+                        <a href="product.html">
+                            <h3 class="product-title">Rosy Lip Balm</h3>
+                        </a>
+                        <div class="product-price">Rp 89.000</div>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <a href="product.html"><img
+                                src="https://images.unsplash.com/photo-1591360236480-4497a802d6b1?q=80&w=800&auto=format&fit=crop"
+                                alt="Eyeshadow"></a>
+                        <div class="add-to-cart-btn" onclick="addToCart()">+ Keranjang</div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Eye</div>
+                        <a href="product.html">
+                            <h3 class="product-title">Sunset Nude Palette</h3>
+                        </a>
+                        <div class="product-price">Rp 159.000</div>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <a href="product.html"><img
+                                src="https://images.unsplash.com/photo-1631729371254-42c2a890967f?q=80&w=800&auto=format&fit=crop"
+                                alt="Foundation"></a>
+                        <div class="add-to-cart-btn" onclick="addToCart()">+ Keranjang</div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Face</div>
+                        <a href="product.html">
+                            <h3 class="product-title">Glow Liquid Foundation</h3>
+                        </a>
+                        <div class="product-price">Rp 129.000</div>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <a href="product.html"><img
+                                src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=800&auto=format&fit=crop"
+                                alt="Blush On"></a>
+                        <div class="add-to-cart-btn" onclick="addToCart()">+ Keranjang</div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Face</div>
+                        <a href="product.html">
+                            <h3 class="product-title">Peach Perfect Blush</h3>
+                        </a>
+                        <div class="product-price">Rp 75.000</div>
+                    </div>
+                </div>
+
+                <!-- Product 5 (Copy for demo) -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <a href="product.html"><img
+                                src="https://images.unsplash.com/photo-1586495777744-4413f21062fa?q=80&w=800&auto=format&fit=crop"
+                                alt="Lipstick"></a>
+                        <div class="add-to-cart-btn" onclick="addToCart()">+ Keranjang</div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Lips</div>
+                        <a href="product.html">
+                            <h3 class="product-title">Matte Rose Lipstick</h3>
+                        </a>
+                        <div class="product-price">Rp 95.000</div>
+                    </div>
+                </div>
+
+                <!-- Product 6 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <a href="product.html"><img
+                                src="https://images.unsplash.com/photo-1522335789203-abd7fe01f169?q=80&w=800&auto=format&fit=crop"
+                                alt="Brush Set"></a>
+                        <div class="add-to-cart-btn" onclick="addToCart()">+ Keranjang</div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Tools</div>
+                        <a href="product.html">
+                            <h3 class="product-title">Luxury Brush Set</h3>
+                        </a>
+                        <div class="product-price">Rp 250.000</div>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <!-- Footer reused -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4 class="logo">Glow<span>Up</span>.</h4>
+                    <p style="color: var(--color-text-light);">Menemani perempuan tampil percaya diri dengan makeup yang
+                        aman, terjangkau, dan estetik.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Bantuan</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Cara Pemesanan</a></li>
+                        <li><a href="#">Pengiriman</a></li>
+                        <li><a href="#">Pengembalian</a></li>
+                        <li><a href="#">Status Order</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Perusahaan</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">Tentang Kami</a></li>
+                        <li><a href="#">Hubungi Kami</a></li>
+                        <li><a href="#">Karir</a></li>
+                        <li><a href="#">Mitra</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Ikuti Kami</h4>
+                    <div class="nav-icons" style="justify-content: flex-start;">
+                        <i class="fab fa-instagram"></i>
+                        <i class="fab fa-tiktok"></i>
+                        <i class="fab fa-youtube"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 GlowUp Cosmetics. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

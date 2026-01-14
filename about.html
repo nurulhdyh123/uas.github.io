@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tentang Kami | GlowUp</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .about-hero {
+            text-align: center;
+            padding: 4rem 1rem;
+            background: var(--color-light-bg);
+            margin-bottom: 4rem;
+        }
+
+        .about-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--color-dusty);
+        }
+
+        .about-story {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-bottom: 4rem;
+        }
+
+        .story-img {
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .team-member {
+            text-align: center;
+        }
+
+        .member-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 1rem;
+            border: 4px solid var(--color-light-bg);
+        }
+
+        @media (max-width: 768px) {
+            .about-story {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="container navbar">
+            <a href="index.html" class="logo">Glow<span>Up</span>.</a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Beranda</a></li>
+                    <li><a href="shop.html">Belanja</a></li>
+                    <li><a href="about.html" class="active">Tentang Kami</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                </ul>
+            </nav>
+            <div class="nav-icons">
+                <i class="fas fa-search"></i>
+                <i class="far fa-heart"></i>
+                <div class="cart-icon-wrapper" style="position: relative;">
+                    <i class="fas fa-shopping-bag"></i>
+                    <!-- Simplified cart count for this page -->
+                    <span id="cart-count"
+                        style="background: var(--color-primary); color: white; border-radius: 50%; padding: 2px 6px; font-size: 12px; position:absolute; top: -8px; right: -8px;">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="about-hero">
+        <div class="container">
+            <h1>Cerita Kami</h1>
+            <p style="max-width: 600px; margin: 0 auto; color: var(--color-text-light);">
+                Bermula dari kecintaan pada kecantikan yang inklusif dan menyenangkan.
+            </p>
+        </div>
+    </div>
+
+    <div class="container">
+        <section class="about-story">
+            <img src="https://images.unsplash.com/photo-1571781565036-d3f7595ca3e4?q=80&w=800&auto=format&fit=crop"
+                class="story-img" alt="GlowUp Team">
+            <div>
+                <h2 class="section-title">Visi & Misi</h2>
+                <p style="margin-bottom: 1.5rem; color: var(--color-text-light);">
+                    "Menemani perempuan tampil percaya diri dengan makeup yang aman dan terjangkau."
+                </p>
+                <p style="color: var(--color-text-light); margin-bottom: 1rem;">
+                    GlowUp hadir sebagai sahabat bagi setiap perempuan yang ingin mengekspresikan diri melalui warna.
+                    Kami percaya bahwa makeup bukan sekadar penutup kekurangan, melainkan alat untuk menonjolkan
+                    kelebihan unikmu.
+                    Semua produk kami diformulasikan dengan bahan aman, cruelty-free, dan halal.
+                </p>
+
+                <h3 style="margin-top: 2rem; margin-bottom: 1rem; color: var(--color-dusty);">Kenapa GlowUp?</h3>
+                <ul style="list-style: disc; padding-left: 1.5rem; color: var(--color-text-light);">
+                    <li style="margin-bottom: 0.5rem;">Warna yang vibrant dan tahan lama</li>
+                    <li style="margin-bottom: 0.5rem;">Packaging estetik yang mood-boosting</li>
+                    <li style="margin-bottom: 0.5rem;">Harga ramah di kantong pelajar & mahasiswa</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="teams text-center" style="margin-bottom: 5rem;">
+            <h2 class="section-title">Tim Kami</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=400&auto=format&fit=crop"
+                        class="member-img" alt="Founder">
+                    <h4>Alina Rose</h4>
+                    <p style="color: var(--color-text-light); font-size: 0.9rem;">Founder & CEO</p>
+                </div>
+                <div class="team-member">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=400&auto=format&fit=crop"
+                        class="member-img" alt="Creative Director">
+                    <h4>Bella Swan</h4>
+                    <p style="color: var(--color-text-light); font-size: 0.9rem;">Creative Director</p>
+                </div>
+                <div class="team-member">
+                    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400&auto=format&fit=crop&q=60"
+                        class="member-img" alt="Product Manager">
+                    <h4>Cindy Lauper</h4>
+                    <p style="color: var(--color-text-light); font-size: 0.9rem;">Product Specialist</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer reused -->
+    <footer>
+        <div class="container">
+            <div class="text-center">
+                <h4 class="logo">Glow<span>Up</span>.</h4>
+                <p class="copyright">&copy; 2026 GlowUp Cosmetics.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

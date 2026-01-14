@@ -1,102 +1,102 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduGame Hub - Belajar Jadi Seru</title>
+    <title>Kuis Pintar SD | Belajar Semua Mapel</title>
     <link rel="stylesheet" href="style.css">
-    
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
-    
-    <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
 
-    <div class="bg-shape shape-1"></div>
-    <div class="bg-shape shape-2"></div>
+    <div class="container">
 
-    <div class="app-container">
-        
-        <header>
-            <h1>EduGame Hub</h1>
-            <p class="subtitle">Belajar Efektif dengan Cara Interaktif</p>
-        </header>
+        <!-- Screen 1: Home / Level Selection -->
+        <div id="home-screen" class="screen active">
+            <h1 class="title-main">Kuis Pintar SD <i class="fas fa-graduation-cap"></i></h1>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem;">Pilih Tingkat Kesulitanmu:</p>
 
-        <!-- VIEW 1: LEVEL SELECTION -->
-        <main id="home-view" class="view-section active">
-            <h2 style="color:white; margin-bottom:1rem;">Pilih Jenjang Kamu</h2>
-            <div class="grid-container">
-                <button class="card-btn" onclick="app.selectLevel('SD')">
-                    <i class="fa-solid fa-child-reaching"></i>
-                    <span>SD</span>
-                </button>
-                <button class="card-btn" onclick="app.selectLevel('SMP')">
-                    <i class="fa-solid fa-user-graduate"></i>
-                    <span>SMP</span>
-                </button>
-                <button class="card-btn" onclick="app.selectLevel('SMA')">
-                    <i class="fa-solid fa-atom"></i>
-                    <span>SMA</span>
-                </button>
+            <div class="input-group" style="margin-bottom: 20px;">
+                <label for="question-count"
+                    style="display: block; font-size: 1.1rem; margin-bottom: 10px; font-weight: bold;">Mau berapa
+                    soal?</label>
+                <input type="number" id="question-count" min="1" max="50" value="10" placeholder="10">
             </div>
-        </main>
 
-        <!-- VIEW 2: SUBJECT SELECTION -->
-        <main id="subject-view" class="view-section">
-            <button class="back-btn" onclick="app.goHome()"><i class="fa-solid fa-arrow-left"></i> Kembali</button>
-            <h2 id="level-title" style="color:white; margin-bottom:1rem;">Materi SD</h2>
-            <div class="grid-container" id="subject-grid">
-                <!-- Injected via JS -->
-            </div>
-        </main>
+            <button class="btn btn-level btn-dasar" onclick="startLevel('dasar')">
+                <i class="fas fa-star"></i> Dasar (SD 1-2)
+            </button>
+            <button class="btn btn-level btn-menengah" onclick="startLevel('menengah')">
+                <i class="fas fa-rocket"></i> Menengah (SD 3-4)
+            </button>
+            <button class="btn btn-level btn-sulit" onclick="startLevel('sulit')">
+                <i class="fas fa-brain"></i> Sulit (SD 5-6)
+            </button>
+        </div>
 
-        <!-- VIEW 3: GAME BOARD -->
-        <main id="game-view" class="view-section">
-            <div class="game-header">
-                <div class="stat-box">
-                    <div class="stat-label">Waktu</div>
-                    <div class="stat-value" id="timer">--</div>
+        <!-- Screen 2: Quiz Area -->
+        <div id="quiz-screen" class="screen">
+            <div class="card">
+                <div class="quiz-header">
+                    <span id="level-indicator">Level: Dasar</span>
+                    <span class="score-badge">Skor: <span id="score">0</span></span>
+                    <span>Soal: <span id="question-number">1</span>/10</span>
                 </div>
-                <div class="stat-box">
-                    <div class="stat-label">Skor</div>
-                    <div class="stat-value" id="score">0</div>
-                </div>
-            </div>
 
-            <div id="game-content-area">
-                <!-- Question or Puzzle container injected here -->
-                <div class="question-area" id="question-text">Loading...</div>
-                <div class="options-grid" id="options-container">
-                    <!-- Buttons injected here -->
+                <div class="progress-bar"
+                    style="height: 10px; background: #eee; border-radius: 5px; margin-bottom: 20px; overflow: hidden;">
+                    <div id="progress-fill"
+                        style="height: 100%; width: 0%; background: var(--color-primary); transition: width 0.3s;">
+                    </div>
+                </div>
+
+                <div id="question-text" class="question-box">2 + 3 = ?</div>
+
+                <div id="options-container" class="options-grid">
+                    <!-- Options generated via JS -->
+                    <button class="btn btn-option">4</button>
+                    <button class="btn btn-option">5</button>
+                    <button class="btn btn-option">6</button>
+                    <button class="btn btn-option">7</button>
                 </div>
             </div>
-        </main>
 
-        <!-- VIEW 4: RESULTS -->
-        <main id="result-view" class="view-section">
-            <div class="result-card">
-                <i class="fa-solid fa-trophy" style="font-size: 4rem; color: gold; margin-bottom: 1rem;"></i>
-                <h2>Permainan Selesai!</h2>
-                <p>Skor Akhir Kamu</p>
-                <div class="final-score" id="final-score">0</div>
-                <div style="display:flex; gap:1rem; justify-content:center; margin-top:2rem;">
-                    <button class="card-btn" style="padding: 1rem 2rem; font-size:1rem;" onclick="app.restartGame()">
-                        <i class="fa-solid fa-rotate-right"></i> Main Lagi
-                    </button>
-                    <button class="card-btn" style="padding: 1rem 2rem; font-size:1rem;" onclick="app.goHome()">
-                        <i class="fa-solid fa-house"></i> Home
-                    </button>
+            <button class="btn btn-secondary" onclick="goHome()" style="margin-top: 2rem; font-size: 1rem;">
+                <i class="fas fa-home"></i> Keluar
+            </button>
+        </div>
+
+        <!-- Screen 3: Results -->
+        <div id="result-screen" class="screen">
+            <div class="card">
+                <h2 class="section-title">Permainan Selesai!</h2>
+                <div style="font-size: 5rem; margin: 1rem 0;">
+                    <i id="result-icon" class="fas fa-trophy" style="color: var(--color-accent);"></i>
                 </div>
+                <h3 style="font-size: 2rem; margin-bottom: 1rem;">Skor Kamu:</h3>
+                <h1 id="final-score" style="font-size: 4rem; color: var(--color-primary); margin-bottom: 2rem;">100</h1>
+
+                <p id="result-message" style="font-size: 1.2rem; margin-bottom: 2rem;">Luar Biasa! Kamu hebat!</p>
+
+                <button class="btn btn-primary" onclick="restartGame()">Main Lagi</button>
+                <button class="btn btn-secondary" onclick="goHome()">Menu Utama</button>
             </div>
-        </main>
+        </div>
 
     </div>
 
-    <script type="module" src="data.js"></script>
-    <script type="module" src="script.js"></script>
+    <!-- Feedback Overlay -->
+    <div id="feedback" class="feedback-overlay">
+        BENAR!
+    </div>
+
+    <!-- Correct/Wrong Sound Effects (Optional placeholders) -->
+    <!-- We simulate these with visual only for now as user didn't provide assets, 
+         but we keep the structure ready -->
+
+    <script src="script.js"></script>
 </body>
+
 </html>
